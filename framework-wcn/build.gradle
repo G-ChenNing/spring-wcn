@@ -1,0 +1,131 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group 'com.github.g-chenning'
+
+version '0.0.21.RELEASE'
+
+apply plugin: 'java'
+
+sourceCompatibility = '12'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '8.5.23'
+
+}
+
+apply from: rootDir.canonicalPath + '/.gradle/publish.gradle'
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+//指定编译的编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+publishing {
+    // 定义发布什么
+    publications {
+//        mavenJava(MavenPublication) {
+//        maven(MavenPublication) {
+//            groupId = project.group
+//            artifactId = project.name
+//            version = project.version
+//        }
+
+        mavenJava(MavenPublication) {
+//             groupId = project.group
+//             artifactId = project.name
+//             version = project.version
+//            // groupId,artifactId,version
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                // 构件名称
+                // 区别于artifactId，可以理解为artifactName
+                name = 'http-wcn'
+                // 构件描述
+                description = 'http-wcn'
+                // 构件主页
+                url = 'https://github.com/G-ChenNing/JDBC-yml-Quick'
+                // 许可证名称和地址
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                // 开发者信息
+                developers {
+                    developer {
+                        name = 'MuskNing'
+                        email = 'ning2922015@163.com'
+                    }
+                }
+                // 版本控制仓库地址
+                scm {
+                    url = 'https://github.com/G-ChenNing/JDBC-yml-Quick.git'
+                    connection = 'https://github.com/G-ChenNing/JDBC-yml-Quick.git'
+                    developerConnection = 'https://github.com/G-ChenNing/JDBC-yml-Quick.git'
+                }
+            }
+        }
+    }
+    // 定义发布到哪里
+    repositories {
+        maven {
+//            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+//            def releasesRepoUrl = "https://oss.sonatype.org/content/repositories/releases/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+//            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            url = version.toLowerCase().contains("SNAPSHOT".toLowerCase()) ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                // 这里就是之前在issues.sonatype.org注册的账号
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    //.isJava9Compatible()
+//    if(JavaVersion.current().java12Compatible) {
+//        options.addBooleanOption('html4', true)
+//    }
+    // <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    // 防止本地打开中文乱码
+    options.addStringOption("charset", "UTF-8")
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+//    options.addOption("charset", "UTF-8")
+//    options.encoding = "GBK"
+}
+publishMavenJavaPublicationToMavenLocal.mustRunAfter(clean)
+
+//apply from: rootDir.canonicalPath + '/.gradle/publish.gradle'
+//apply from: 'D:\\workspace\\my_workspace\\http-wcn\\.gradle\\publish.gradle'

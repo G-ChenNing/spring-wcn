@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.g-chenning</groupId>
+  <artifactId>framework-wcn</artifactId>
+  <version>0.0.21.RELEASE</version>
+  <name>http-wcn</name>
+  <description>http-wcn</description>
+  <url>https://github.com/G-ChenNing/JDBC-yml-Quick</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>MuskNing</name>
+      <email>ning2922015@163.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>https://github.com/G-ChenNing/JDBC-yml-Quick.git</connection>
+    <developerConnection>https://github.com/G-ChenNing/JDBC-yml-Quick.git</developerConnection>
+    <url>https://github.com/G-ChenNing/JDBC-yml-Quick.git</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>8.5.23</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

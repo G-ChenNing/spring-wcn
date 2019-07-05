@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"com.github.wangchenning.beans"},{"l":"com.github.wangchenning.core"},{"l":"com.github.wangchenning.starter"},{"l":"com.github.wangchenning.web.handler"},{"l":"com.github.wangchenning.web.mvc"},{"l":"com.github.wangchenning.web.server"},{"l":"com.github.wangchenning.web.servlet"},{"l":"所有程序包","url":"allpackages-index.html"}]
