@@ -1,4 +1,4 @@
 rootProject.name = 'spring-wcn'
 include 'framework-wcn'
-//include 'test'
+include 'test'
 

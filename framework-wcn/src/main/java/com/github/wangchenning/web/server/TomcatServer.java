@@ -2,8 +2,10 @@ package com.github.wangchenning.web.server;
 
 import com.github.wangchenning.web.servlet.DispatcherServlet;
 import org.apache.catalina.Context;
+import org.apache.catalina.Host;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.core.StandardContext;
+import org.apache.catalina.core.StandardHost;
 import org.apache.catalina.startup.Tomcat;
 
 /**
@@ -21,6 +23,7 @@ public class TomcatServer {
     public void startServer() throws LifecycleException {
         tomcat = new Tomcat();
         tomcat.setPort(6699);
+        tomcat.setHost(new StandardHost());
         tomcat.start();
 
         Context context = new StandardContext();

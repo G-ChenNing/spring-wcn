@@ -6,10 +6,10 @@ plugins {
 }
 
 group 'com.github.g-chenning'
-
+version '0.0.21J8.RELEASE'
 apply plugin: 'java'
 
-sourceCompatibility = '12'
+sourceCompatibility = '8'
 
 repositories {
     mavenCentral()
